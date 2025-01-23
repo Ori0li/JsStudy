@@ -5001,89 +5001,107 @@ const data = [
   },
 ];
 
-// 1. 화페를 euro or dollor 쓰는 사람만 필터링 하기
-const useEuroDollor = (x) => x.currency == "Euro" || x.currency == "Dollor";
+// // 1. 화페를 euro or dollor 쓰는 사람만 필터링 하기
+// const useEuroDollor = (x) => x.currency == "Euro" || x.currency == "Dollor";
 
-const a = data.filter(useEuroDollor);
-console.log(a);
+// const a = data.filter(useEuroDollor);
+// console.log(a);
 
-// 2. 직업에서 engineer인 사람만 필터하고, 이름, 언어,부서,이메일만 나타내기
+// // 2. 직업에서 engineer인 사람만 필터하고, 이름, 언어,부서,이메일만 나타내기
 
-data
-  .filter((x) => x.jobTitle.includes("Engineer"))
+// data
+//   .filter((x) => x.jobTitle.includes("Engineer"))
+//   .map((x) => {
+//     return {
+//       name: x.name,
+//       language: x.language,
+//       department: x.department,
+//       email: x.email,
+//     };
+//   });
+
+// const engineerArr = (x) => {
+//   if (x.jobTitle.includes("Engineer")) {
+//     return x;
+//   }
+// };
+// const engineer = (x) => {
+//   return {
+//     name: x.name,
+//     language: x.language,
+//     department: x.department,
+//     email: x.email,
+//   };
+// };
+// const b = data.filter(engineerArr);
+// console.log(b.map(engineer));
+
+// // 3. 달러를 원화로 바꾸고 그 원이 10000원에서 100만원인 사람들만 필터링 하고, 이름과 크레딧카드와 이메일만 나타내기
+// // const changeWon = (x) => {
+// //   x.money *= 1430;
+// //   return x;
+// // };
+// const quiz3 = data
+//   .filter((x) => {
+//     const won = Number(x.money.slice(1, x.money.length)) * 1430;
+//     return 10000 <= won && won <= 1000000;
+//   })
+//   .map((x) => {
+//     return { name: x.name, creditCard: x.creditCard, email: x.email };
+//   });
+
+// console.log(quiz3);
+
+// // 4. 현재 데이터에서 언어와 화페단위만 남겨서 보여주기
+
+// const holyMoly = (x) => {
+//   return {
+//     language: x.language,
+//     currency: x.currency,
+//   };
+// };
+
+// data.map((x) => {
+//   return { language: x.language, currency: x.currency };
+// });
+// console.log(data.map(holyMoly));
+
+// // 5. 이름은 성을 빼고 이메일은 도메인 빼고, 크레딧카드는 앞에 4개만 남겨서 모두 보여주기
+
+// const rollyPolly = (x) => {
+//   const first = x.name.split(" ")[0];
+//   const id = x.email.split("@")[0];
+//   const creditFour = x.creditCard.slice(0, 4);
+//   return {
+//     name: first,
+//     email: id,
+//     creditCard: creditFour,
+//   };
+// };
+
+// data.map((x) => {
+//   const [name] = x.name.split(" ");
+//   const [userEmail] = x.email.split("@");
+//   const [slicedCredit] = x.creditCard.slice(0, 4);
+//   return { ...x, name: name, email: userEmail, creditCard: slicedCredit };
+// });
+
+// // console.log(data.map(rollyPolly));
+
+const aaccc = data
+  .filter((x) => {
+    return x.language == "Spanish";
+  })
   .map((x) => {
+    const [name] = x.name.split(" ");
+    const [userEmail, userDomain] = x.email.split("@");
+    const [slicedCredit] = x.creditCard.slice(0, 4);
     return {
-      name: x.name,
-      language: x.language,
-      department: x.department,
-      email: x.email,
+      name: name,
+      email: userEmail,
+      domain: userDomain,
+      creditCard: slicedCredit,
     };
   });
 
-const engineerArr = (x) => {
-  if (x.jobTitle.includes("Engineer")) {
-    return x;
-  }
-};
-const engineer = (x) => {
-  return {
-    name: x.name,
-    language: x.language,
-    department: x.department,
-    email: x.email,
-  };
-};
-const b = data.filter(engineerArr);
-console.log(b.map(engineer));
-
-// 3. 달러를 원화로 바꾸고 그 원이 10000원에서 100만원인 사람들만 필터링 하고, 이름과 크레딧카드와 이메일만 나타내기
-// const changeWon = (x) => {
-//   x.money *= 1430;
-//   return x;
-// };
-const quiz3 = data
-  .filter((x) => {
-    const won = Number(x.money.slice(1, x.money.length)) * 1430;
-    return 10000 <= won && won <= 1000000;
-  })
-  .map((x) => {
-    return { name: x.name, creditCard: x.creditCard, email: x.email };
-  });
-
-console.log(quiz3);
-
-// 4. 현재 데이터에서 언어와 화페단위만 남겨서 보여주기
-
-const holyMoly = (x) => {
-  return {
-    language: x.language,
-    currency: x.currency,
-  };
-};
-
-data.map((x) => {
-  return { language: x.language, currency: x.currency };
-});
-console.log(data.map(holyMoly));
-
-// 5. 이름은 성을 빼고 이메일은 도메인 빼고, 크레딧카드는 앞에 4개만 남겨서 모두 보여주기
-
-const rollyPolly = (x) => {
-  const first = x.name.split(" ")[0];
-  const id = x.email.split("@")[0];
-  const creditFour = x.creditCard.slice(0, 4);
-  return {
-    name: first,
-    email: id,
-    creditCard: creditFour,
-  };
-};
-
-data.map((x) => {
-  const [name] = x.name.split(" ");
-  const [userEmail] = x.email.split("@");
-  const [slicedCredit] = x.creditCard.slice(0, 4);
-  return { ...x, name: name, email: userEmail, creditCard: slicedCredit };
-});
-
-console.log(data.map(rollyPolly));
+console.log(aaccc);
